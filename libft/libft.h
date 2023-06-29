@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:04:55 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/06/23 12:29:10 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/06/28 10:33:48 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
 # endif
-
 
 typedef struct s_list
 {

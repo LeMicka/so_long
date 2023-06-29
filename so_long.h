@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:27:09 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/06/23 13:09:12 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/06/28 14:02:12 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 # define SO_LONG_H
 
 # include "libft/libft.h"
+# include "mlx/include/MLX42/MLX42.h"
 
 #endif
