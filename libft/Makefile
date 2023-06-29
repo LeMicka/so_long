@@ -6,7 +6,7 @@
 #    By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/23 12:35:49 by mbruzzi           #+#    #+#              #
-#    Updated: 2023/06/29 11:20:08 by mbruzzi          ###   ########.fr        #
+#    Updated: 2023/06/29 20:15:23 by mbruzzi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ SRC =  ft_atoi.c \
 		printf_functions.c \
 		get_next_line.c \
 		get_next_line_bonus.c \
+		get_next_line_noNewLine.c \
 		ft_free_tab.c \
 
 BONUS_SRC = 	ft_lstnew.c \

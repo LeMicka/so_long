@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:04:55 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/06/29 11:44:43 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/06/29 20:38:07 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,6 @@ int		ft_printhex(unsigned int ptr, char id);
 // get-next-line
 char	*get_next_line(int fd);
 char	*get_next_line_bonus(int fd);
-int		get_next_line_ps_checker(int fd, char **line);
+int		get_next_line_nonew(int fd, char **line);
 
 #endif

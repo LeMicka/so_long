@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:11:06 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/06/29 13:48:37 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/06/29 20:37:06 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,26 @@ void	check_extension(char *map_name)
 	ft_free_tab(map_separated);
 }
 
+char **map_read(fd)
+{
+	char	**map;
+	int		gnl_status;
+	int		i;
+
+	map = (char *)malloc(sizeof(char **));
+	if (!map)
+		exit(0);
+	i = 1;
+	gnl_status = get_next_line_nonew(fd, &map[0]);
+	while (gnl_status)
+	{
+		gnl_status = get_next_line_nonew(fd, &map[i]);
+		ft_printf("%s\n", map[i]);
+		i++;
+	}
+	return (map);
+}
+
 void	map_init(char *argv[])
 {
 	int		map_fd;
@@ -38,4 +58,5 @@ void	map_init(char *argv[])
 		ft_printf("ERROR: map %s not openable\n", argv[1]);
 		exit(0);
 	}
+	map = map_read(map_fd);
 }
