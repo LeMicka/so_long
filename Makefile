@@ -14,6 +14,7 @@ MLX = mlx/build/libmlx42.a -framework OpenGL -framework AppKit -lglfw -L /Users/
 
 
 SRCS        :=	srcs/main.c \
+				srcs/map/map_init.c \
 
 OBJS        := $(SRCS:.c=.o)
 
@@ -43,7 +44,7 @@ clean:
 			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)objs ✔️"
 
 fclean:		clean
-			@ ${RM} ${NAME}
+			@ ${RM} ${NAME} ${LIBFT}
 			@ echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 
 re:			fclean all

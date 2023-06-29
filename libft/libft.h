@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:04:55 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/06/28 10:33:48 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/06/29 11:44:43 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	ft_putstr(char *s);
 int		ft_strcmp(char *s1, char *s2);
 long	ft_atoi_long(const char *str);
+void	ft_free_tab(char **tab);
 
 // printf
 int		ft_print_str(const char *str);

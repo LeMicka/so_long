@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_free_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 12:27:09 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/06/29 11:40:16 by mbruzzi          ###   ########.fr       */
+/*   Created: 2023/06/29 11:17:57 by mbruzzi           #+#    #+#             */
+/*   Updated: 2023/06/29 11:44:21 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include "libft/libft.h"
-# include "mlx/include/MLX42/MLX42.h"
-# include <fcntl.h>
+void	ft_free_tab(char **tab)
+{
+	int	i;
 
-void	map_init(char *argv[]);
-
-#endif
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
