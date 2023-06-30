@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 13:23:21 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/03/29 12:50:40 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/06/30 13:15:44 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,9 @@ char	*ft_line(char *buffer)
 char	*ft_newbuffer(char *buff1, char *buff2)
 {
 	char	*buffer;
-
+	ft_printf("gnlnb1\n");
 	buffer = ft_strjoin(buff1, buff2);
+	ft_printf("gnlnb2\n");
 	free(buff1);
 	return (buffer);
 }
@@ -86,17 +87,23 @@ char	*read_line(int fd, char *buffer)
 	read_status = 1;
 	while (read_status > 0)
 	{
+		ft_printf("gnlr1\n");
 		read_status = read(fd, line, BUFFER_SIZE);
+		ft_printf("gnlr2\n");
 		if (read_status == -1)
 		{
 			free (line);
 			free (buffer);
 			return (NULL);
 		}
+		ft_printf("gnlr3\n");
 		line[read_status] = '\0';
+		ft_printf("gnlr4\n");
 		buffer = ft_newbuffer(buffer, line);
+		ft_printf("gnlr5\n");
 		if (ft_strchr(line, '\n'))
 			break ;
+		ft_printf("gnlr6\n");
 	}
 	free (line);
 	return (buffer);
@@ -109,12 +116,18 @@ char	*get_next_line(int fd)
 
 	if (!buffer)
 		buffer = NULL;
+	ft_printf("gnl1\n");
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
+	ft_printf("gnl2\n");
 	buffer = read_line(fd, buffer);
+	ft_printf("gnl3\n");
 	if (!buffer)
 		return (NULL);
+	ft_printf("gnl4\n");
 	tmp = ft_line(buffer);
+	ft_printf("gnl5\n");
 	buffer = ft_updatebuf(buffer);
+	ft_printf("gnl6\n");
 	return (tmp);
 }

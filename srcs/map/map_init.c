@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:11:06 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/06/29 20:37:06 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/06/30 13:06:18 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,27 @@ void	check_extension(char *map_name)
 	ft_free_tab(map_separated);
 }
 
-char **map_read(fd)
+char	**map_read(int fd)
 {
 	char	**map;
-	int		gnl_status;
+	char	*map_one_line;
+	char	*tmp;
 	int		i;
 
-	map = (char *)malloc(sizeof(char **));
-	if (!map)
-		exit(0);
-	i = 1;
-	gnl_status = get_next_line_nonew(fd, &map[0]);
-	while (gnl_status)
+	tmp = "";
+	map_one_line = "";
+	ft_printf("ici");
+	tmp = get_next_line(fd);
+	ft_printf("ici1");
+	i = 0;
+	while (tmp != NULL)
 	{
-		gnl_status = get_next_line_nonew(fd, &map[i]);
-		ft_printf("%s\n", map[i]);
+		map_one_line = ft_strjoin(map_one_line, tmp);
+		free(tmp);
 		i++;
+		tmp = get_next_line(fd);
 	}
+	ft_printf("%s", map_one_line);
 	return (map);
 }
 
@@ -52,7 +56,7 @@ void	map_init(char *argv[])
 	char	**map;
 
 	check_extension(argv[1]);
-	map_fd = open(argv[1], O_RDONLY, 0777);
+	map_fd = open(argv[1], O_RDONLY);
 	if (map_fd < 0)
 	{
 		ft_printf("ERROR: map %s not openable\n", argv[1]);
