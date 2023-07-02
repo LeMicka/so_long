@@ -10,7 +10,7 @@
 
 #define WIDTH 150
 #define HEIGHT 150
-
+/* 
 // Exit the program as failure.
 static void ft_error(void)
 {
@@ -24,7 +24,7 @@ static void ft_hook(void* param)
 	const mlx_t* mlx = param;
 
 	printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
-}
+} */
 
 int	main(int argc, char *argv[])
 {

@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 11:54:10 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/06/30 13:42:07 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/02 21:17:54 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 char	*ft_strjoin(char *s1, char const *s2)
 {
 	int		i;
-	int		len1;
-	int		len2;
+	int		j;
 	char	*str;
 
 	if (!s1)
@@ -25,17 +24,18 @@ char	*ft_strjoin(char *s1, char const *s2)
 	if (str == NULL)
 		return (NULL);
 	i = 0;
-	while (len1 > i)
+	while (s1[i])
 	{
 		str[i] = s1[i];
 		i++;
 	}
-	i = 0;
-	while (len2 > i)
+	j = 0;
+	while (s2[j])
 	{
-		str[len1 + i] = s2[i];
+		str[i] = s2[j];
 		i++;
+		j++;
 	}
-	str[len1 + i] = '\0';
+	str[i] = '\0';
 	return (str);
 }

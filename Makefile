@@ -1,3 +1,4 @@
+UNAME := $(shell uname)
 NAME        := so_long
 CC        := gcc
 FLAGS    := 
@@ -20,6 +21,11 @@ OBJS        := $(SRCS:.c=.o)
 
 .c.o:
 	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+
+ifeq ($(shell uname), Linux)
+LIBMLX = ./mlx_linux/	
+MLX = mlx_linux/libmlx.a -Iinclude -ldl -lglfw -pthread -lm
+endif
 
 CLR_RMV		:= \033[0m
 RED		    := \033[1;31m

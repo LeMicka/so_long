@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:11:06 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/06/30 13:06:18 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/02 21:20:44 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ char	**map_read(int fd)
 
 	tmp = "";
 	map_one_line = "";
-	ft_printf("ici");
 	tmp = get_next_line(fd);
-	ft_printf("ici1");
 	i = 0;
 	while (tmp != NULL)
 	{
