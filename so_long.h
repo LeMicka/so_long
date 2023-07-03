@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:27:09 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/06/29 11:40:16 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/03 14:25:30 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@
 # include "mlx/include/MLX42/MLX42.h"
 # include <fcntl.h>
 
-void	map_init(char *argv[]);
+typedef struct s_map
+{
+    int     height;
+    int     width;
+    char    **map;
+}   t_map;
+
+t_map	*map_init(char *argv[]);
+void	map_errors(t_map *map_struct);
+void	map_error_messages(t_map *map_struct, char *error_message);
+t_map   *create_struct(t_map *map_struct);
 
 #endif

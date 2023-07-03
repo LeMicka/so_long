@@ -28,13 +28,13 @@ static void ft_hook(void* param)
 
 int	main(int argc, char *argv[])
 {
-
+	t_map	*map_struct;
 	if (argc != 2)
 	{
 		ft_printf("So_long -> USAGE ERROR: ./so_long <map.ber>");
 		exit(0);
 	}
-	map_init(argv);
+	map_struct = map_init(argv);
 	// MLX allows you to define its core behaviour before startup.
 	//mlx_set_setting(MLX_MAXIMIZED, true);
 	/*

@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:11:06 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/03 11:13:38 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/03 14:27:08 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,34 @@ char	**map_read(int fd)
 	return (map);
 }
 
-void	map_init(char *argv[])
+void	get_size(char **map, t_map *map_struct)
+{
+	int	i;
+	int	j;
+	int	len;
+
+	i = 0;
+	len = 0;
+	while(map[i])
+	{
+		j = 0;
+		while(map[i][j])
+			j++;
+		if (len == 0)
+			len = j;
+		if (len != j)
+			map_error_messages(map_struct, "NON_UNIFORM_MAP");
+		i++;
+	}
+	map_struct->height = i;
+	map_struct->width = len;
+}
+
+t_map	*map_init(char *argv[])
 {
 	int		map_fd;
 	char	**map;
+	t_map	*map_struct;
 
 	check_extension(argv[1]);
 	map_fd = open(argv[1], O_RDONLY);
@@ -62,6 +86,8 @@ void	map_init(char *argv[])
 		ft_printf("ERROR: map %s not openable\n", argv[1]);
 		exit(0);
 	}
-	map = map_read(map_fd);
-	ft_free_tab(map);
+	map_struct = create_struct(map_struct);
+	map_struct->map = map_read(map_fd);
+	get_size(map, map_struct);
+	return (map_struct);
 }
