@@ -35,6 +35,7 @@ int	main(int argc, char *argv[])
 		exit(0);
 	}
 	map_struct = map_init(argv);
+	map_errors(map_struct);
 	// MLX allows you to define its core behaviour before startup.
 	//mlx_set_setting(MLX_MAXIMIZED, true);
 	/*
