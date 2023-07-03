@@ -1,7 +1,7 @@
 UNAME := $(shell uname)
 NAME        := so_long
 CC        := gcc
-FLAGS    := 
+FLAGS    := -g -Wall -Werror -Wextra
 
 RM  = rm -f
 

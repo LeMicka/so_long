@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:11:06 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/03 14:51:50 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/03 18:26:08 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,12 @@ char	**map_read(int fd)
 	char	**map;
 	char	*map_one_line;
 	char	*tmp;
-	int		status;
 	int		i;
 
 	tmp = "";
 	map_one_line = "";
 	tmp = get_next_line(fd);
 	i = 0;
-	status = 1;
 	while (tmp != NULL)
 	{
 		map_one_line = ft_strjoin(map_one_line, tmp);
@@ -78,7 +76,7 @@ t_map	*map_init(char *argv[])
 	int		map_fd;
 	t_map	*map_struct;
 
-
+	map_struct = NULL;
 	check_extension(argv[1]);
 	map_fd = open(argv[1], O_RDONLY);
 	if (map_fd < 0)
