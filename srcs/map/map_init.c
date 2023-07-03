@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:11:06 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/02 21:20:44 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/03 11:13:38 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ char	**map_read(int fd)
 	char	**map;
 	char	*map_one_line;
 	char	*tmp;
+	int		status;
 	int		i;
 
 	tmp = "";
 	map_one_line = "";
 	tmp = get_next_line(fd);
 	i = 0;
+	status = 1;
 	while (tmp != NULL)
 	{
 		map_one_line = ft_strjoin(map_one_line, tmp);
@@ -44,7 +46,7 @@ char	**map_read(int fd)
 		i++;
 		tmp = get_next_line(fd);
 	}
-	ft_printf("%s", map_one_line);
+	map = ft_split(map_one_line, '\n');
 	return (map);
 }
 
@@ -61,4 +63,5 @@ void	map_init(char *argv[])
 		exit(0);
 	}
 	map = map_read(map_fd);
+	ft_free_tab(map);
 }
