@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:11:06 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/03 18:26:08 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/05 12:42:30 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	check_extension(char *map_name)
 	map_separated = ft_split(map_name, '.');
 	if (!ft_strcmp(map_separated[1], ".ber"))
 	{
-		ft_free_tab(map_separated);
+		ft_free_tab(map_separated, 0);
 		ft_printf("ERROR: map %s doesn't have the '.ber' extension\n", map_name);
 		exit(0);
 	}
-	ft_free_tab(map_separated);
+	ft_free_tab(map_separated, 0);
 }
 
 char	**map_read(int fd)
