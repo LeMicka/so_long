@@ -26,9 +26,8 @@ OBJS        := $(SRCS:.c=.o)
 .c.o:
 	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
-ifeq ($(shell uname), Linux)
-LIBMLX = ./mlx_linux/	
-MLX = mlx_linux/libmlx.a -Iinclude -ldl -lglfw -pthread -lm
+ifeq ($(shell uname), Linux)	
+MLX = mlx/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lXext -lX11 -lm
 endif
 
 CLR_RMV		:= \033[0m

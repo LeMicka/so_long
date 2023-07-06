@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:26:22 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/05 16:23:57 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/06 09:58:58 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	map_error_messages(t_map *map_struct, char *error_message)
 {
 	if (!ft_strcmp(error_message, "NON_UNIFORM_MAP"))
-		ft_putstr_fd("ERROR\nNON_UNIFORM_MAP: The provided map is not uniform\n", 2);
+		ft_putstr_fd("ERROR\nNON_UNIFORM_MAP: The provided map is not uniform.\n", 2);
 	if (!ft_strcmp(error_message, "BORDER_ERROR"))
-		ft_putstr_fd("ERROR\nBORDER_ERROR: The provided map is not closed/surrounded by walls\n", 2);
+		ft_putstr_fd("ERROR\nBORDER_ERROR: The provided map is not closed/surrounded by walls.\n", 2);
 	if (!ft_strcmp(error_message, "COMPONENT_ERROR"))
 		ft_putstr_fd("ERROR\nCOMPONENTS_ERROR: The provided map has to many/little"
 					 "of the required components.\nHere are the components needed:\n"
@@ -29,7 +29,7 @@ void	map_error_messages(t_map *map_struct, char *error_message)
 					 "P for the player’s starting position.\n"
 					 "The map must contain 1 exit, at least 1 collectible, and 1 starting position to be valid.\n", 2);
 	if (!ft_strcmp(error_message, "MAP_NOT_RESOLVABLE"))
-		ft_putstr_fd("ERROR\nMAP_NOT_RESOLVABLE: The provided map is not resolvable\n", 2);
+		ft_putstr_fd("ERROR\nMAP_NOT_RESOLVABLE: Player can't access all the collectibles or the exit.\n", 2);
 	ft_free_tab(map_struct->map, map_struct->height);
 	free(map_struct);
 	exit(1);
