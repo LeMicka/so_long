@@ -74,7 +74,7 @@ int	main(void)
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-	if (!(image = mlx_new_image(mlx, 128, 128)))
+	if (!(image = mlx_new_image(mlx, 128, 51)))
 	{
 		mlx_close_window(mlx);
 		puts(mlx_strerror(mlx_errno));
