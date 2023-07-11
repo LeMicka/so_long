@@ -19,6 +19,7 @@ SRCS        :=	srcs/main.c \
 				srcs/map/map_errors.c \
 				srcs/map/map_struct.c \
 				srcs/map/map_resolvable.c \
+				srcs/map/map_to_window.c \
 
 
 OBJS        := $(SRCS:.c=.o)

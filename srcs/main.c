@@ -56,10 +56,10 @@ void ft_hook(void* param)
 		image->instances[0].x += 5;
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	mlx_t	*mlx;
-	/* t_map	*map_struct;
+	 t_map	*map_struct;
 	
 	if (argc != 2)
 	{
@@ -67,33 +67,29 @@ int	main(void)
 		exit(0);
 	}
 	map_struct = map_init(argv);
-	map_errors(map_struct); */
-
-	if (!(mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
-	{
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
-	}
-	if (!(image = mlx_new_image(mlx, 128, 51)))
-	{
-		mlx_close_window(mlx);
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
-	}
-	if (mlx_image_to_window(mlx, image, 0, 0) == -1)
-	{
-		mlx_close_window(mlx);
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
-	}
+	map_errors(map_struct);
 	
-	mlx_loop_hook(mlx, ft_randomize, mlx);
-	mlx_loop_hook(mlx, ft_hook, mlx);
-
+	if (!(mlx = mlx_init(TILE_WIDTH * map_struct->width, TILE_HEIGHT * map_struct->height, "MLX42", true)))
+	{
+		puts(mlx_strerror(mlx_errno));
+		return(EXIT_FAILURE);
+	}
+	map_to_window(map_struct, mlx);
+	/* mlx_texture_t* texture = mlx_load_png("./assets/walls.png");
+	mlx_image_t* img = mlx_texture_to_image(mlx, texture);
+	mlx_resize_image(img, WIDTH / map_struct->width, HEIGHT / map_struct->height);
+	if (mlx_image_to_window(mlx, img, 0, 0) < 0)
+	{
+		mlx_close_window(mlx);
+		puts(mlx_strerror(mlx_errno));
+		return(EXIT_FAILURE);
+	}
 	mlx_loop(mlx);
+	mlx_delete_image(mlx, img);
+	mlx_delete_texture(texture); */
 	mlx_terminate(mlx);
 	
-	//ft_free_tab(map_struct->map, map_struct->height);
-	//free(map_struct);
+	ft_free_tab(map_struct->map, map_struct->height);
+	free(map_struct);
 	return (EXIT_SUCCESS);
 }
