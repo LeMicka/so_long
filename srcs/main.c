@@ -9,72 +9,105 @@
 #include "../so_long.h"
 
 
-#define BPP sizeof(int32_t)
- 
-#define WIDTH 512
-#define HEIGHT 512
-
-static mlx_image_t* image;
-
-// -----------------------------------------------------------------------------
-
-int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
+/* void	ft_hook(void *param)
 {
-    return (r << 24 | g << 16 | b << 8 | a);
+	t_game *game_struct;
+
+	game_struct = param;
+
+	if (mlx_is_key_down(game_struct->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(game_struct->mlx);
+	if (mlx_is_key_down(game_struct->mlx, MLX_KEY_UP))
+		images->player->instances[0].y -= 1;
+	if (mlx_is_key_down(game_struct->mlx, MLX_KEY_DOWN))
+		images->player->instances[0].y += 1;
+	if (mlx_is_key_down(game_struct->mlx, MLX_KEY_LEFT))
+		images->player->instances[0].x -= 1;
+	if (mlx_is_key_down(game_struct->mlx, MLX_KEY_RIGHT))
+		images->player->instances[0].x += 1;
+} */
+
+void	check_extension(char *map_name)
+{
+	char	**map_separated;
+
+	map_separated = ft_split(map_name, '.');
+	if (!ft_strcmp(map_separated[1], ".ber"))
+	{
+		ft_free_tab(map_separated, 0);
+		ft_printf("ERROR: map %s doesn't have the '.ber' extension\n", map_name);
+		exit(0);
+	}
+	ft_free_tab(map_separated, 0);
 }
 
-void ft_randomize()
+void	window_close(t_game *game_struct)
 {
-	for (uint32_t i = 0; i < image->width; ++i)
+	mlx_delete_image(game_struct->mlx, game_struct->empty);
+	mlx_delete_image(game_struct->mlx, game_struct->wall);
+	mlx_delete_image(game_struct->mlx, game_struct->collectible);
+	mlx_delete_image(game_struct->mlx, game_struct->objective);
+	mlx_delete_image(game_struct->mlx, game_struct->player);
+}
+
+void	put_imgs(t_game *game_struct)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < game_struct->height)
 	{
-		for (uint32_t y = 0; y < image->height; ++y)
+		j = 0;
+		while (j < game_struct->width)
 		{
-			uint32_t color = ft_pixel(
-				rand() % 0xFF, // R
-				rand() % 0xFF, // G
-				rand() % 0xFF, // B
-				rand() % 0xFF  // A
-			);
-			mlx_put_pixel(image, i, y, color);
+			if (game_struct->map[i][j] == '1')
+				mlx_image_to_window(game_struct->mlx, game_struct->wall, j * TILE_WIDTH , i * TILE_HEIGHT);
+			else
+				mlx_image_to_window(game_struct->mlx, game_struct->empty, j * TILE_WIDTH , i * TILE_HEIGHT);
+			if (game_struct->map[i][j] == 'C')
+				mlx_image_to_window(game_struct->mlx, game_struct->collectible, j * TILE_WIDTH , i * TILE_HEIGHT);
+			if (game_struct->map[i][j] == 'E')
+				mlx_image_to_window(game_struct->mlx, game_struct->objective, j * TILE_WIDTH , i * TILE_HEIGHT);
+			if (game_struct->map[i][j] == 'P')
+				mlx_image_to_window(game_struct->mlx, game_struct->player, j * TILE_WIDTH , i * TILE_HEIGHT);
+			j++;
 		}
+		i++;
 	}
 }
 
-void ft_hook(void* param)
+void	game(t_game *game_struct)
 {
-	mlx_t* mlx = param;
-
-	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(mlx);
-	if (mlx_is_key_down(mlx, MLX_KEY_UP))
-		image->instances[0].y -= 5;
-	if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
-		image->instances[0].y += 5;
-	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
-		image->instances[0].x -= 5;
-	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-		image->instances[0].x += 5;
+	/* int i = 0;
+	while (i < game_struct->height)
+	{
+		ft_printf("%s\n", game_struct->map[i]);
+		i++;
+	} */
+	game_struct->mlx = mlx_init(TILE_WIDTH * game_struct->width, TILE_HEIGHT * game_struct->height, "MLX42", true);
+	get_img_struct(game_struct);
+	put_imgs(game_struct);
+	mlx_key_hook(game_struct->mlx, &ft_move, game_struct);
+	mlx_loop(game_struct->mlx);
 }
 
 int	main(int argc, char **argv)
 {
-	mlx_t	*mlx;
-	 t_map	*map_struct;
-	
+	t_game		*game_struct;
+
+	game_struct = NULL;
 	if (argc != 2)
 	{
 		ft_printf("So_long -> USAGE ERROR: ./so_long <map.ber>");
 		exit(0);
 	}
-	map_struct = map_init(argv);
-	map_errors(map_struct);
+	check_extension(argv[1]);
+	game_struct = create_struct(game_struct);
+	map_init(argv, game_struct);
+	map_errors(game_struct);
 	
-	if (!(mlx = mlx_init(TILE_WIDTH * map_struct->width, TILE_HEIGHT * map_struct->height, "MLX42", true)))
-	{
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
-	}
-	map_to_window(map_struct, mlx);
+	game(game_struct);
 	/* mlx_texture_t* texture = mlx_load_png("./assets/walls.png");
 	mlx_image_t* img = mlx_texture_to_image(mlx, texture);
 	mlx_resize_image(img, WIDTH / map_struct->width, HEIGHT / map_struct->height);
@@ -87,9 +120,9 @@ int	main(int argc, char **argv)
 	mlx_loop(mlx);
 	mlx_delete_image(mlx, img);
 	mlx_delete_texture(texture); */
-	mlx_terminate(mlx);
+	mlx_terminate(game_struct->mlx);
 	
-	ft_free_tab(map_struct->map, map_struct->height);
-	free(map_struct);
+	ft_free_tab(game_struct->map, game_struct->height);
+	free(game_struct);
 	return (EXIT_SUCCESS);
 }

@@ -6,22 +6,34 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:20:00 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/04 10:00:45 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/13 12:56:08 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-t_map   *create_struct(t_map *map_struct)
+t_game   *create_struct(t_game *game_struct)
 {
-    map_struct = (t_map *)malloc(sizeof(t_map));
-    if (!map_struct)
+    game_struct = (t_game *)malloc(sizeof(t_game));
+    if (!game_struct)
         return(NULL);
-    map_struct->height = 0;
-    map_struct->width = 0;
-    map_struct->map = NULL;
-    map_struct->collectibles = 0;
-    map_struct->exit = 0;
-    map_struct->player = 0;
-    return (map_struct);
+    game_struct->mlx = NULL;
+    game_struct->height = 0;
+    game_struct->width = 0;
+    game_struct->map = NULL;
+    game_struct->nb_collectibles = 0;
+    game_struct->nb_exit = 0;
+    game_struct->nb_player = 0;
+    game_struct->player_i = 0;
+    game_struct->player_j = 0;
+    game_struct->next_i = 0;
+    game_struct->next_j = 0;
+    game_struct->e_i = 0;
+    game_struct->e_j = 0;
+    game_struct->collectible = NULL;
+    game_struct->wall = NULL;
+    game_struct->player = NULL;
+    game_struct->empty = NULL;
+    game_struct->objective = NULL;
+    return (game_struct);
 }

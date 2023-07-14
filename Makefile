@@ -15,6 +15,7 @@ MLX = mlx/build/libmlx42.a -framework OpenGL -framework AppKit -lglfw -L /Users/
 
 
 SRCS        :=	srcs/main.c \
+				srcs/move.c \
 				srcs/map/map_init.c \
 				srcs/map/map_errors.c \
 				srcs/map/map_struct.c \
