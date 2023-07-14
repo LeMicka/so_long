@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:24:39 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/12 13:11:15 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/14 12:55:15 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,30 @@ t_textures	*textures_create(t_textures *textures)
 	textures = (t_textures *)malloc(sizeof(t_textures));
 	if (!textures)
 		return(NULL);
-	textures->empty = mlx_load_png("/home/mbruzzi/so_long2/assets/empty.png");
-	textures->wall = mlx_load_png("/home/mbruzzi/so_long2/assets/walls.png");
-	textures->collectible = mlx_load_png("/home/mbruzzi/so_long2/assets/collectibles.png");
-	textures->objective = mlx_load_png("/home/mbruzzi/so_long2/assets/objective.png");
-	textures->player = mlx_load_png("/home/mbruzzi/so_long2/assets/player.png");
+	textures->empty = mlx_load_png("/Users/mbruzzi/Cursus/so_long/assets/empty.png");
+	textures->wall = mlx_load_png("/Users/mbruzzi/Cursus/so_long/assets/walls.png");
+	textures->collectible = mlx_load_png("/Users/mbruzzi/Cursus/so_long/assets/collectibles.png");
+	textures->objective = mlx_load_png("/Users/mbruzzi/Cursus/so_long/assets/objective.png");
+	textures->player = mlx_load_png("/Users/mbruzzi/Cursus/so_long/assets/player.png");
 	return (textures);
 }
 
-void	get_img_struct(t_game *game_struct)
+void	get_img_struct(t_game *game)
 {
 	t_textures	*textures;
 
 	textures = NULL;
 	textures = textures_create(textures);
-	game_struct->empty = mlx_texture_to_image(game_struct->mlx, textures->empty);
-	mlx_resize_image(game_struct->empty, TILE_WIDTH, TILE_HEIGHT);
-	game_struct->wall = mlx_texture_to_image(game_struct->mlx, textures->wall);
-	mlx_resize_image(game_struct->wall, TILE_WIDTH, TILE_HEIGHT);
-	game_struct->collectible = mlx_texture_to_image(game_struct->mlx, textures->collectible);
-	mlx_resize_image(game_struct->collectible, TILE_WIDTH, TILE_HEIGHT);
-	game_struct->objective = mlx_texture_to_image(game_struct->mlx, textures->objective);
-	mlx_resize_image(game_struct->objective, TILE_WIDTH, TILE_HEIGHT);
-	game_struct->player = mlx_texture_to_image(game_struct->mlx, textures->player);
-	mlx_resize_image(game_struct->player, TILE_WIDTH, TILE_HEIGHT);
+	game->empty = mlx_texture_to_image(game->mlx, textures->empty);
+	mlx_resize_image(game->empty, TILE_WIDTH, TILE_HEIGHT);
+	game->wall = mlx_texture_to_image(game->mlx, textures->wall);
+	mlx_resize_image(game->wall, TILE_WIDTH, TILE_HEIGHT);
+	game->collectible = mlx_texture_to_image(game->mlx, textures->collectible);
+	mlx_resize_image(game->collectible, TILE_WIDTH, TILE_HEIGHT);
+	game->objective = mlx_texture_to_image(game->mlx, textures->objective);
+	mlx_resize_image(game->objective, TILE_WIDTH, TILE_HEIGHT);
+	game->player = mlx_texture_to_image(game->mlx, textures->player);
+	mlx_resize_image(game->player, TILE_WIDTH, TILE_HEIGHT);
 	mlx_delete_texture(textures->empty);
 	mlx_delete_texture(textures->wall);
 	mlx_delete_texture(textures->collectible);

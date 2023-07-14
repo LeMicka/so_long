@@ -106,7 +106,6 @@ int	main(int argc, char **argv)
 	game_struct = create_struct(game_struct);
 	map_init(argv, game_struct);
 	map_errors(game_struct);
-	
 	game(game_struct);
 	/* mlx_texture_t* texture = mlx_load_png("./assets/walls.png");
 	mlx_image_t* img = mlx_texture_to_image(mlx, texture);
@@ -124,5 +123,6 @@ int	main(int argc, char **argv)
 	
 	ft_free_tab(game_struct->map, game_struct->height);
 	free(game_struct);
+	
 	return (EXIT_SUCCESS);
 }

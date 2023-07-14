@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:26:22 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/13 13:00:54 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/14 13:17:43 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	map_error_messages(t_game *game_struct, char *error_message)
 
 bool	map_components(t_game *game_struct)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (game_struct->map[i])
@@ -73,7 +73,7 @@ bool	map_components(t_game *game_struct)
 
 bool	check_borders(t_game *game_struct)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (game_struct->map[i])

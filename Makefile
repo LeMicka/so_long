@@ -1,7 +1,7 @@
 UNAME := $(shell uname)
 NAME        := so_long
 CC        := gcc
-FLAGS    := -g -Wall -Werror -Wextra
+FLAGS    := -g -Wall -Werror -Wextra -fsanitize=leak
 
 RM  = rm -f
 
