@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:27:09 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/14 15:07:44 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/17 15:44:53 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,10 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
-# ifndef WIDTH
-#  define TILE_WIDTH 52
-# endif
-
-# ifndef HEIGHT
-#  define TILE_HEIGHT 52
-# endif
+# define TILE_W 52
+# define TILE_H 52
+# define custom_malloc(X) my_malloc(X, __FILE__, __LINE__, __FUNCTION__)
+# define custom_free(P) my_free(P, __FILE__, __LINE__, __FUNCTION__)
 
 typedef struct s_game
 {
@@ -44,8 +41,8 @@ typedef struct s_game
 	int				nb_moves;
 	mlx_image_t		*wall;
 	mlx_image_t		*empty;
-	mlx_image_t		*objective;
-	mlx_image_t		*collectible;
+	mlx_image_t		*obj;
+	mlx_image_t		*coll;
 	mlx_image_t		*player;
 }	t_game;
 
@@ -75,5 +72,7 @@ void		get_img_struct(t_game *game_struct);
 void		put_imgs(t_game *game_struct);
 void		ft_move(mlx_key_data_t keydata, void *param);
 void		window_close(t_game *game_struct);
+void		*my_malloc(size_t size, const char *file, int line, const char *func);
+void		my_free(void *ptr, const char *file, int line, const char *func);
 
 #endif

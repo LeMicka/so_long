@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 10:11:06 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/14 14:30:47 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/17 15:45:54 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_longer_map(char *buff1, char *buff2)
 	char	*buffer;
 
 	buffer = ft_strjoin(buff1, buff2);
-	free(buff1);
+	custom_free(buff1);
 	return (buffer);
 }
 
@@ -36,13 +36,13 @@ char	**map_read(int fd)
 	{
 		map_one_line = ft_longer_map(map_one_line, tmp);
 		if (i != 0)
-			free(tmp);
+			custom_free(tmp);
 		tmp = get_next_line(fd);
 		i++;
 	}
-	free(tmp);
+	custom_free(tmp);
 	map = ft_split(map_one_line, '\n');
-	free(map_one_line);
+	custom_free(map_one_line);
 	return (map);
 }
 

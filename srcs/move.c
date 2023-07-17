@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 11:56:02 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/14 15:08:11 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/17 15:47:09 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	ft_end_game(t_game *game_struct)
 	window_close(game_struct);
 	mlx_terminate(game_struct->mlx);
 	ft_free_tab(game_struct->map, game_struct->height);
-	free(game_struct);
-	//atexit(ft_leaks);
+	custom_free(game_struct);
+	atexit(ft_leaks);
 	exit(0);
 }
 

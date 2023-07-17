@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:20:00 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/14 10:33:26 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/17 13:37:18 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_game	*create_struct(t_game *game_struct)
 {
-	game_struct = (t_game *)malloc(sizeof(t_game));
+	game_struct = (t_game *)custom_malloc(sizeof(t_game));
 	if (!game_struct)
 		return (NULL);
 	game_struct->mlx = NULL;
@@ -31,10 +31,10 @@ t_game	*create_struct(t_game *game_struct)
 	game_struct->e_i = 0;
 	game_struct->e_j = 0;
 	game_struct->nb_moves = 0;
-	game_struct->collectible = NULL;
+	game_struct->coll = NULL;
 	game_struct->wall = NULL;
 	game_struct->player = NULL;
 	game_struct->empty = NULL;
-	game_struct->objective = NULL;
+	game_struct->obj = NULL;
 	return (game_struct);
 }

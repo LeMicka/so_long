@@ -1,31 +1,31 @@
-// -----------------------------------------------------------------------------
-// Codam Coding College, Amsterdam @ 2022-2023 by W2Wizard.
-// See README in the root project for more information.
-// -----------------------------------------------------------------------------
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/17 10:19:16 by mbruzzi           #+#    #+#             */
+/*   Updated: 2023/07/17 15:47:10 by mbruzzi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
 #include "../so_long.h"
 
-
-/* void	ft_hook(void *param)
+void	*my_malloc(size_t size, const char *file, int line, const char *f)
 {
-	t_game *game_struct;
+	void	*p;
 
-	game_struct = param;
+	p = malloc(size);
+	printf("Allocated = %s, %i, %s, %p[%li]\n", file, line, f, p, size);
+	return (p);
+}
 
-	if (mlx_is_key_down(game_struct->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(game_struct->mlx);
-	if (mlx_is_key_down(game_struct->mlx, MLX_KEY_UP))
-		images->player->instances[0].y -= 1;
-	if (mlx_is_key_down(game_struct->mlx, MLX_KEY_DOWN))
-		images->player->instances[0].y += 1;
-	if (mlx_is_key_down(game_struct->mlx, MLX_KEY_LEFT))
-		images->player->instances[0].x -= 1;
-	if (mlx_is_key_down(game_struct->mlx, MLX_KEY_RIGHT))
-		images->player->instances[0].x += 1;
-} */
+void	my_free(void *ptr, const char *file, int line, const char *func)
+{
+	free(ptr);
+	printf("Freed = %s, %i, %s, %p\n", file, line, func, ptr);
+}
 
 void	check_extension(char *map_name)
 {
@@ -45,51 +45,48 @@ void	window_close(t_game *game_struct)
 {
 	mlx_delete_image(game_struct->mlx, game_struct->empty);
 	mlx_delete_image(game_struct->mlx, game_struct->wall);
-	mlx_delete_image(game_struct->mlx, game_struct->collectible);
-	mlx_delete_image(game_struct->mlx, game_struct->objective);
+	mlx_delete_image(game_struct->mlx, game_struct->coll);
+	mlx_delete_image(game_struct->mlx, game_struct->obj);
 	mlx_delete_image(game_struct->mlx, game_struct->player);
 }
 
-void	put_imgs(t_game *game_struct)
+void	put_imgs(t_game *g)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < game_struct->height)
+	while (i < g->height)
 	{
 		j = 0;
-		while (j < game_struct->width)
+		while (j < g->width)
 		{
-			if (game_struct->map[i][j] == '1')
-				mlx_image_to_window(game_struct->mlx, game_struct->wall, j * TILE_WIDTH , i * TILE_HEIGHT);
+			if (g->map[i][j] == '1')
+				mlx_image_to_window(g->mlx, g->wall, j * TILE_W, i * TILE_H);
 			else
-				mlx_image_to_window(game_struct->mlx, game_struct->empty, j * TILE_WIDTH , i * TILE_HEIGHT);
-			if (game_struct->map[i][j] == 'C')
-				mlx_image_to_window(game_struct->mlx, game_struct->collectible, j * TILE_WIDTH , i * TILE_HEIGHT);
-			if (game_struct->map[i][j] == 'E')
-				mlx_image_to_window(game_struct->mlx, game_struct->objective, j * TILE_WIDTH , i * TILE_HEIGHT);
-			if (game_struct->map[i][j] == 'P')
-				mlx_image_to_window(game_struct->mlx, game_struct->player, j * TILE_WIDTH , i * TILE_HEIGHT);
+				mlx_image_to_window(g->mlx, g->empty, j * TILE_W, i * TILE_H);
+			if (g->map[i][j] == 'C')
+				mlx_image_to_window(g->mlx, g->coll, j * TILE_W, i * TILE_H);
+			if (g->map[i][j] == 'E')
+				mlx_image_to_window(g->mlx, g->obj, j * TILE_W, i * TILE_H);
+			if (g->map[i][j] == 'P')
+				mlx_image_to_window(g->mlx, g->player, j * TILE_W, i * TILE_H);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	game(t_game *game_struct)
+void	game(t_game *g)
 {
-	/* int i = 0;
-	while (i < game_struct->height)
-	{
-		ft_printf("%s\n", game_struct->map[i]);
-		i++;
-	} */
-	game_struct->mlx = mlx_init(TILE_WIDTH * game_struct->width, TILE_HEIGHT * game_struct->height, "MLX42", true);
-	get_img_struct(game_struct);
-	put_imgs(game_struct);
-	mlx_key_hook(game_struct->mlx, &ft_move, game_struct);
-	mlx_loop(game_struct->mlx);
+	g->mlx = mlx_init(TILE_W * g->width, TILE_H * g->height, "MLX42", true);
+	get_img_struct(g);
+	put_imgs(g);
+	mlx_key_hook(g->mlx, &ft_move, g);
+	mlx_loop(g->mlx);
+	mlx_terminate(g->mlx);
+	ft_free_tab(g->map, g->height);
+	custom_free(g);
 }
 
 int	main(int argc, char **argv)
@@ -107,22 +104,8 @@ int	main(int argc, char **argv)
 	map_init(argv, game_struct);
 	map_errors(game_struct);
 	game(game_struct);
-	/* mlx_texture_t* texture = mlx_load_png("./assets/walls.png");
-	mlx_image_t* img = mlx_texture_to_image(mlx, texture);
-	mlx_resize_image(img, WIDTH / map_struct->width, HEIGHT / map_struct->height);
-	if (mlx_image_to_window(mlx, img, 0, 0) < 0)
-	{
-		mlx_close_window(mlx);
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
-	}
-	mlx_loop(mlx);
-	mlx_delete_image(mlx, img);
-	mlx_delete_texture(texture); */
 	mlx_terminate(game_struct->mlx);
-	
 	ft_free_tab(game_struct->map, game_struct->height);
-	free(game_struct);
-	
+	custom_free(game_struct);
 	return (EXIT_SUCCESS);
 }
