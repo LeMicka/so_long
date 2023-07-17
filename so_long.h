@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:27:09 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/17 15:44:53 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/17 16:37:22 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 
 # define TILE_W 52
 # define TILE_H 52
-# define custom_malloc(X) my_malloc(X, __FILE__, __LINE__, __FUNCTION__)
-# define custom_free(P) my_free(P, __FILE__, __LINE__, __FUNCTION__)
 
 typedef struct s_game
 {

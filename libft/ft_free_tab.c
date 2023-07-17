@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 11:17:57 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/14 14:34:30 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/17 16:20:28 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_free_tab(char **tab, int rows)
 	{
 		while (tab[i])
 		{
-			free(tab[i]);
+			custom_free(tab[i]);
 			i++;
 		}
 	}
@@ -29,9 +29,9 @@ void	ft_free_tab(char **tab, int rows)
 	{
 		while (i < rows)
 		{
-			free(tab[i]);
+			custom_free(tab[i]);
 			i++;
 		}
 	}
-	free(tab);
+	custom_free(tab);
 }

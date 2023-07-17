@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:26:22 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/17 13:16:44 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/17 16:14:45 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	map_error_messages(t_game *game_struct, char *error_message)
 		ft_putstr_fd("ERROR\nMAP_NOT_RESOLVABLE:"
 			" Player can't access all the collectibles or the exit.\n", 2);
 	ft_free_tab(game_struct->map, game_struct->height);
-	free(game_struct);
+	custom_free(game_struct);
 	exit(1);
 }
 

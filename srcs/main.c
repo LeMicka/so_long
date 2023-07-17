@@ -6,26 +6,11 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 10:19:16 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/17 15:47:10 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/17 16:01:30 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-void	*my_malloc(size_t size, const char *file, int line, const char *f)
-{
-	void	*p;
-
-	p = malloc(size);
-	printf("Allocated = %s, %i, %s, %p[%li]\n", file, line, f, p, size);
-	return (p);
-}
-
-void	my_free(void *ptr, const char *file, int line, const char *func)
-{
-	free(ptr);
-	printf("Freed = %s, %i, %s, %p\n", file, line, func, ptr);
-}
 
 void	check_extension(char *map_name)
 {

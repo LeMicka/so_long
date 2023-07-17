@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:04:55 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/05 12:27:07 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/17 16:31:28 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
 # endif
+
+# define custom_malloc(X) my_malloc(X, __FILE__, __LINE__, __FUNCTION__)
+# define custom_free(P) my_free(P, __FILE__, __LINE__, __FUNCTION__)
 
 typedef struct s_list
 {
@@ -82,6 +85,8 @@ void	ft_putstr(char *s);
 int		ft_strcmp(char *s1, char *s2);
 long	ft_atoi_long(const char *str);
 void	ft_free_tab(char **tab, int rows);
+void	*my_malloc(size_t size, const char *file, int line, const char *f);
+void	my_free(void *ptr, const char *file, int line, const char *func);
 
 // printf
 int		ft_print_str(const char *str);

@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 09:45:02 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/17 15:47:13 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/17 16:23:33 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**map_copy(t_game *game_struct)
 	i = 0;
 	while (i < game_struct->height)
 	{
-		map_copy[i] = (char *)calloc(sizeof(char), game_struct->width + 1);
+		map_copy[i] = (char *)ft_calloc(sizeof(char), game_struct->width + 1);
 		ft_memmove(map_copy[i], game_struct->map[i], game_struct->width);
 		i++;
 	}

@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   my_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 15:25:30 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/17 16:22:56 by mbruzzi          ###   ########.fr       */
+/*   Created: 2023/07/17 16:00:53 by mbruzzi           #+#    #+#             */
+/*   Updated: 2023/07/17 16:02:08 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	my_free(void *ptr, const char *file, int line, const char *func)
 {
-	void	*created;
-
-	created = custom_malloc(count * size);
-	if (!created)
-		return (NULL);
-	ft_bzero(created, count * size);
-	return (created);
+	free(ptr);
+	printf("Freed = %s, %i, %s, %p\n", file, line, func, ptr);
 }

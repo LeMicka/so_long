@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   my_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 15:25:30 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/17 16:22:56 by mbruzzi          ###   ########.fr       */
+/*   Created: 2023/07/17 15:59:12 by mbruzzi           #+#    #+#             */
+/*   Updated: 2023/07/17 16:00:31 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	*my_malloc(size_t size, const char *file, int line, const char *f)
 {
-	void	*created;
+	void	*p;
 
-	created = custom_malloc(count * size);
-	if (!created)
-		return (NULL);
-	ft_bzero(created, count * size);
-	return (created);
+	p = malloc(size);
+	printf("Allocated = %s, %i, %s, %p[%li]\n", file, line, f, p, size);
+	return (p);
 }
