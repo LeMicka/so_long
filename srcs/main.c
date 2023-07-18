@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 10:19:16 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/17 16:01:30 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/18 09:58:58 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	game(t_game *g)
 	mlx_loop(g->mlx);
 	mlx_terminate(g->mlx);
 	ft_free_tab(g->map, g->height);
-	custom_free(g);
+	free(g);
 }
 
 int	main(int argc, char **argv)
@@ -89,8 +89,5 @@ int	main(int argc, char **argv)
 	map_init(argv, game_struct);
 	map_errors(game_struct);
 	game(game_struct);
-	mlx_terminate(game_struct->mlx);
-	ft_free_tab(game_struct->map, game_struct->height);
-	custom_free(game_struct);
 	return (EXIT_SUCCESS);
 }

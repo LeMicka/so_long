@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:04:55 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/17 16:31:28 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/18 11:34:03 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
 # endif
-
-# define custom_malloc(X) my_malloc(X, __FILE__, __LINE__, __FUNCTION__)
-# define custom_free(P) my_free(P, __FILE__, __LINE__, __FUNCTION__)
 
 typedef struct s_list
 {

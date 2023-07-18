@@ -6,24 +6,24 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 11:56:02 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/17 15:47:09 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/18 11:30:53 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	ft_leaks(void)
+/* void	ft_leaks(void)
 {
 	system("leaks -q so_long");
-}
+	atexit(ft_leaks);
+} */
 
 void	ft_end_game(t_game *game_struct)
 {
 	window_close(game_struct);
 	mlx_terminate(game_struct->mlx);
 	ft_free_tab(game_struct->map, game_struct->height);
-	custom_free(game_struct);
-	atexit(ft_leaks);
+	free(game_struct);
 	exit(0);
 }
 
@@ -52,7 +52,7 @@ void	ft_empty_or_coll(t_game *game_struct, int i, int j)
 		game_struct->nb_collectibles--;
 	if (player_i == game_struct->e_i && player_j == game_struct->e_j)
 	{
-		game_struct->map[game_struct->player_i][game_struct->player_i] = 'E';
+		game_struct->map[game_struct->player_i][game_struct->player_j] = 'E';
 		game_struct->map[i][j] = 'P';
 	}
 	else

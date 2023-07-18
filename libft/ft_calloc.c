@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 15:25:30 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/17 16:22:56 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/18 09:45:15 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*created;
 
-	created = custom_malloc(count * size);
+	created = malloc(count * size);
 	if (!created)
 		return (NULL);
 	ft_bzero(created, count * size);

@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 09:45:02 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/17 16:23:33 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/18 10:15:15 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	**map_copy(t_game *game_struct)
 	char	**map_copy;
 	int		i;
 
-	map_copy = (char **)custom_malloc(sizeof(char *) * (game_struct->height));
+	map_copy = (char **)malloc(sizeof(char *) * (game_struct->height));
 	i = 0;
 	while (i < game_struct->height)
 	{
@@ -46,7 +46,7 @@ void	map_flood(char **map_copy, int i, int j, t_check *elems)
 
 t_check	*check_init(t_check *elems)
 {
-	elems = (t_check *)custom_malloc(sizeof(t_check));
+	elems = (t_check *)malloc(sizeof(t_check));
 	if (!elems)
 		return (NULL);
 	elems->nb_collectibles = 0;
@@ -66,12 +66,12 @@ void	get_pos(t_game *g)
 		j = 0;
 		while (g->map[i][j])
 		{
-			if (g->map[i][j] == 'P' && g->player == 0)
+			if (g->map[i][j] == 'P')
 			{
 				g->player_i = i;
 				g->player_j = j;
 			}
-			else if (g->map[i][j] == 'E' && g->nb_exit == 0)
+			else if (g->map[i][j] == 'E')
 			{
 				g->e_i = i;
 				g->e_j = j;
@@ -100,6 +100,6 @@ bool	map_resolvable(t_game *game_struct)
 	if (elems->nb_collectibles != game_struct->nb_collectibles)
 		err = 1;
 	ft_free_tab(map_cpy, game_struct->height);
-	custom_free(elems);
+	free(elems);
 	return (err);
 }

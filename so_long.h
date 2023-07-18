@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 12:27:09 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/17 16:37:22 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/18 11:32:53 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,5 @@ void		get_img_struct(t_game *game_struct);
 void		put_imgs(t_game *game_struct);
 void		ft_move(mlx_key_data_t keydata, void *param);
 void		window_close(t_game *game_struct);
-void		*my_malloc(size_t size, const char *file, int line, const char *func);
-void		my_free(void *ptr, const char *file, int line, const char *func);
 
 #endif

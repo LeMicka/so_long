@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 13:24:39 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/17 15:47:12 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/18 09:59:33 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_textures	*textures_create(t_textures *textures)
 {
-	textures = (t_textures *)custom_malloc(sizeof(t_textures));
+	textures = (t_textures *)malloc(sizeof(t_textures));
 	if (!textures)
 		return (NULL);
 	textures->empty = mlx_load_png("./assets/empty.png");
@@ -46,5 +46,5 @@ void	get_img_struct(t_game *game)
 	mlx_delete_texture(textures->collectible);
 	mlx_delete_texture(textures->objective);
 	mlx_delete_texture(textures->player);
-	custom_free(textures);
+	free(textures);
 }

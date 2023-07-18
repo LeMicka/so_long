@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 13:23:21 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/17 16:22:01 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/18 11:33:47 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_updatebuf(char *buffer)
 		i++;
 	if (!buffer[i])
 	{
-		custom_free(buffer);
+		free(buffer);
 		return (NULL);
 	}
 	new_buffer = ft_calloc(((ft_strlen(buffer) - i) + 1), sizeof(char));
@@ -37,7 +37,7 @@ char	*ft_updatebuf(char *buffer)
 		i++;
 		j++;
 	}
-	custom_free(buffer);
+	free(buffer);
 	return (new_buffer);
 }
 
@@ -69,8 +69,9 @@ char	*ft_line(char *buffer)
 char	*ft_newbuffer(char *buff1, char *buff2)
 {
 	char	*buffer;
+
 	buffer = ft_strjoin(buff1, buff2);
-	custom_free(buff1);
+	free(buff1);
 	return (buffer);
 }
 
@@ -97,7 +98,7 @@ char	*read_line(int fd, char *buffer)
 		if (ft_strchr(line, '\n'))
 			break ;
 	}
-	custom_free (line);
+	free (line);
 	return (buffer);
 }
 

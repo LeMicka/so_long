@@ -6,7 +6,7 @@
 /*   By: mbruzzi <mbruzzi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 16:16:08 by mbruzzi           #+#    #+#             */
-/*   Updated: 2023/07/17 16:25:15 by mbruzzi          ###   ########.fr       */
+/*   Updated: 2023/07/18 09:46:15 by mbruzzi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*dup_cpy(const char *s, int start, size_t end)
 	int		i;
 
 	i = 0;
-	sub_str = (char *)custom_malloc(sizeof(char) * ((int)end - start + 1));
+	sub_str = (char *)malloc(sizeof(char) * ((int)end - start + 1));
 	while (start < (int)end)
 	{
 		sub_str[i] = s[start];
@@ -52,7 +52,7 @@ char	**ft_split(char const *s, char c)
 	size_t	i;
 	int		j;
 
-	strings = (char **)custom_malloc(sizeof(char *) * (split_counter(s, c) + 1));
+	strings = (char **)malloc(sizeof(char *) * (split_counter(s, c) + 1));
 	if (!s || !strings)
 		return (NULL);
 	i = 0;
